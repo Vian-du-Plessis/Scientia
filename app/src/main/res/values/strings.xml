@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Scientia</string>
+    <string name="my_github"><a href="https://github.com/Vian-du-Plessis">My Github</a></string>
 </resources>
