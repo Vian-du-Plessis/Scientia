@@ -4,7 +4,7 @@
         android:fromDegrees="0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:toDegrees="2000"
+        android:toDegrees="4000"
         android:duration="10000"
         />
 </set>

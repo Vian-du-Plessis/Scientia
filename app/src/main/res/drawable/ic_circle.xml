@@ -5,17 +5,17 @@
     android:viewportWidth="251"
     android:viewportHeight="251">
   <path
-      android:pathData="M126,241C189.51,241 241,189.51 241,126C241,62.48 189.51,11 126,11C62.48,11 11,62.48 11,126C11,189.51 62.48,241 126,241Z"
+      android:pathData="M126,126m-115,0a115,115 0,1 1,230 0a115,115 0,1 1,-230 0"
       android:strokeWidth="20"
       android:fillColor="#00000000">
     <aapt:attr name="android:strokeColor">
       <gradient 
           android:centerX="126"
-          android:centerY="11"
-          android:gradientRadius="230"
+          android:centerY="1"
+          android:gradientRadius="250"
           android:type="radial">
-
         <item android:offset="0" android:color="#FFF65A99"/>
+        <item android:offset="0.34" android:color="#FFF65A99"/>
         <item android:offset="1" android:color="#FFFBB37E"/>
       </gradient>
     </aapt:attr>
