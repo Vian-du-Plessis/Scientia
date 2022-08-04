@@ -20,6 +20,12 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(binding.root);
 
+        val userfield = binding.etNameInput;
+        if ( "LocalStorage"  == "undefined" ) {
+            //If name exists auto fill field
+            userfield.setText("Vian");
+        }
+
         binding.acbBtnStart.setOnClickListener {
             val username = binding.etNameInput.text;
             val inputLayout = binding.tfTextInputLayout;
@@ -31,6 +37,16 @@ class HomeActivity : AppCompatActivity() {
                 val intent = Intent(this, CategoryActivity::class.java);
                 startActivity(intent);
             }
+        }
+
+        binding.ivInfobtn.setOnClickListener {
+            val intent = Intent(this, InfoActivity::class.java);
+            startActivity(intent);
+        }
+
+        binding.ivSettingbtn.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java);
+            startActivity(intent);
         }
 
     }
