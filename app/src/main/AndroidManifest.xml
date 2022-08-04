@@ -26,10 +26,10 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoryActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">

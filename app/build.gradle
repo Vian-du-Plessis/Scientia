@@ -8,19 +8,14 @@ buildscript {
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
-}
-
-
-
-android {
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 android {
     compileSdk 32
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId "com.example.scientia"

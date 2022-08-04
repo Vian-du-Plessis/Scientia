@@ -50,7 +50,7 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout"
+                android:id="@+id/tf_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterEnabled="true"
@@ -59,10 +59,11 @@
                 android:textColorHint="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/name_input"
+                    android:id="@+id/et_name_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter your name"
@@ -75,6 +76,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_btnStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Start"
