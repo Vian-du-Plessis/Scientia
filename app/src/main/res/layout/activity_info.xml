@@ -215,12 +215,12 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tv_myGitHub"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/my_github"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:layout_weight="1"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout

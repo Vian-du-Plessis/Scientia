@@ -3,6 +3,7 @@ package com.example.scientia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.Window
 import android.view.WindowManager
 import com.example.scientia.databinding.ActivityInfoBinding
@@ -33,6 +34,10 @@ class InfoActivity : AppCompatActivity() {
         mAdView = findViewById(R.id.adView);
         val adRequest = AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        // Linking to github
+        val linkText = binding.tvMyGitHub
+        linkText.setMovementMethod(LinkMovementMethod.getInstance());
 
         // Navigates back to home page
         binding.ivBackbtn.setOnClickListener {
