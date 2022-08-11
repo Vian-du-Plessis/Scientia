@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
             } else if ( username.length < 1 ) {
                 inputLayout.setError("Please enter your name.")
             } else {
-                val intent = Intent(this, CategoryActivity::class.java);
+                val intent = Intent(this, QuestionOneActivity::class.java);
                 startActivity(intent);
             }
         }

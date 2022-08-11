@@ -13,14 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Scientia"
         tools:targetApi="31">
+        <activity
+            android:name=".QuestionOneActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
         <activity
             android:name=".InfoActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
@@ -33,7 +36,6 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
