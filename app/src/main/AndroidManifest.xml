@@ -14,8 +14,17 @@
         android:theme="@style/Theme.Scientia"
         tools:targetApi="31">
         <activity
+            android:name=".ResultActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".QuestionOneActivity"
-            android:exported="false" />
+            android:exported="false"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -23,24 +32,20 @@
 
         <activity
             android:name=".InfoActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".CategoryActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

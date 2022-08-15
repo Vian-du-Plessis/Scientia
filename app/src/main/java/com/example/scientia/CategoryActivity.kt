@@ -28,10 +28,8 @@ class CategoryActivity : AppCompatActivity() {
         //    android.view.WindowInsets.Type.statusBars()
         //)
 
-        setContentView(R.layout.activity_category)
-
+        //Bind the View with This Kotlin File
         binding = ActivityCategoryBinding.inflate(layoutInflater);
-
         setContentView(binding.root);
 
         // Initialise ads

@@ -15,10 +15,9 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
 
+        //Bind the View with This Kotlin File
         binding = ActivitySettingsBinding.inflate(layoutInflater);
-
         setContentView(binding.root);
 
         // Initialise Ads
@@ -27,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        // Navigates Back to Home Page
+        // Navigates Back to Home View
         binding.ivBackbtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java);
             startActivity(intent);

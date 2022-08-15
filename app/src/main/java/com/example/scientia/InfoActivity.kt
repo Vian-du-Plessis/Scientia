@@ -23,10 +23,8 @@ class InfoActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        setContentView(R.layout.activity_info)
-
+        //Bind the View with This Kotlin File
         binding = ActivityInfoBinding.inflate(layoutInflater);
-
         setContentView(binding.root);
 
         // Initialise ads
