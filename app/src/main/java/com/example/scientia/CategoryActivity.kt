@@ -8,40 +8,76 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.example.scientia.databinding.ActivityCategoryBinding
+import com.example.scientia.models.Constants.getChemQuestions
+import com.example.scientia.models.Constants.getMathQuestions
+import com.example.scientia.models.Constants.getPhysQuestions
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import java.lang.reflect.Array.get
 
 class CategoryActivity : AppCompatActivity() {
 
-    private lateinit var mAdView : AdView;
+    private lateinit var mAdView : AdView
     private lateinit var binding: ActivityCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Hide Status Bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        // For API-30 and up
-        //window.decorView.windowInsetsController!!.hide(
-        //    android.view.WindowInsets.Type.statusBars()
-        //)
 
-        //Bind the View with This Kotlin File
-        binding = ActivityCategoryBinding.inflate(layoutInflater);
-        setContentView(binding.root);
+        // Bind View
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Initialise ads
-        MobileAds.initialize(this){};
-        mAdView = findViewById(R.id.adView);
-        val adRequest = AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        MobileAds.initialize(this){}
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         // Navigates back to home page
         binding.ivBackbtn.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java);
-            startActivity(intent);
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Select Math Category
+        binding.cvMath.setOnClickListener {
+            // Navigate to Questions Activity
+            val intent = Intent(this, QuestionOneActivity::class.java)
+
+            // Pass the category to questionActivty
+            intent.putExtra("category", "Math")
+
+            // Start Activity
+            startActivity(intent)
+        }
+
+        // Select Chemistry Category
+        binding.cvChem.setOnClickListener {
+            // Navigate to Questions Activity
+            val intent = Intent(this, QuestionOneActivity::class.java)
+
+            // Pass the category to questionActivty
+            intent.putExtra("category", "Chemistry")
+
+            // Start Activity
+            startActivity(intent)
+        }
+
+        // Select Physics Category
+        binding.cvPhys.setOnClickListener {
+            // Navigate to Questions Activity
+            val intent = Intent(this, QuestionOneActivity::class.java)
+
+            // Pass the category to questionActivty
+            intent.putExtra("category", "Physics")
+
+            // Start Activity
+            startActivity(intent)
         }
     }
 }

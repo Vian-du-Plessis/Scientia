@@ -14,17 +14,14 @@
         android:theme="@style/Theme.Scientia"
         tools:targetApi="31">
         <activity
+            android:name=".QuestionTwoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResultActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".QuestionOneActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -44,8 +41,12 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
