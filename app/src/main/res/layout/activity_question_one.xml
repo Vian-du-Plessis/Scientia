@@ -152,44 +152,45 @@
                     android:textSize="20sp"
                     android:textColor="@color/white"
                     android:gravity="center"
-                    android:layout_gravity="fill"/>
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="50dp"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tf_til_answer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/white"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:counterTextColor="@color/white"
-                    app:hintEnabled="false"
-                    android:layout_marginTop="20dp">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/tf_til_answer"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    app:boxStrokeWidth="0dp"-->
+<!--                    app:boxStrokeWidthFocused="0dp"-->
+<!--                    app:counterTextColor="@color/white"-->
+<!--                    app:hintEnabled="false"-->
+<!--                    android:layout_marginTop="20dp">-->
 
-                    <EditText
-                        android:id="@+id/et_name_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_input"
-                        android:hint="Enter your answer"
-                        android:padding="15dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/gray" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/et_name_input"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/custom_input"-->
+<!--                        android:hint="Enter your answer"-->
+<!--                        android:padding="15dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textColorHint="@color/gray" />-->
 
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/acb_btnNext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:padding="10dp"
-                    android:background="@drawable/my_button"
-                    android:backgroundTint="@color/pink"
-                    android:textAllCaps="false"
-                    android:text="Next"
-                    android:textColor="@color/white" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/acb_btnNext"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:layout_marginLeft="40dp"-->
+<!--                    android:layout_marginRight="40dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:background="@drawable/my_button"-->
+<!--                    android:backgroundTint="@color/pink"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:text="Next"-->
+<!--                    android:textColor="@color/white" />-->
 
             </LinearLayout>
         </LinearLayout>

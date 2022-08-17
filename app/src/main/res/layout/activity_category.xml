@@ -71,7 +71,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_Math"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/orange"
                     android:contentDescription="Math"
@@ -96,6 +96,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1.5"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
@@ -139,21 +140,24 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="Answered"
+                                    android:text="High Score"
                                     android:textColor="@color/pink" />
 
                                 <TextView
+                                    android:id="@+id/tv_math_hs"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="90%"
+                                    android:text="8"
                                     android:textColor="@color/black" />
 
                                 <TextView
+                                    android:id="@+id/tv_math_completion"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
                                     android:gravity="center"
-                                    android:text="3/10"
+                                    android:text="100%"
                                     android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>
@@ -170,7 +174,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_chem"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/orange"
                     android:contentDescription="Chemistry"
@@ -195,7 +199,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1.5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:gravity="center">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -238,10 +243,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="Answered"
+                                    android:text="High Score"
                                     android:textColor="@color/pink" />
 
                                 <TextView
+                                    android:id="@+id/tv_chem_hs"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -249,10 +255,13 @@
                                     android:textColor="@color/black" />
 
                                 <TextView
+                                    android:id="@+id/tv_chem_completion"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:text="3/10"
+                                    android:layout_marginTop="10dp"
+
                                     android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>
@@ -269,7 +278,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_Phys"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/orange"
                     android:contentDescription="Physics"
@@ -294,7 +303,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1.5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:gravity="center">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -337,10 +347,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="Answered"
+                                    android:text="High Score"
                                     android:textColor="@color/pink" />
 
                                 <TextView
+                                    android:id="@+id/tv_phys_hs"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -348,10 +359,12 @@
                                     android:textColor="@color/black" />
 
                                 <TextView
+                                    android:id="@+id/tv_phys_completion"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:text="3/10"
+                                    android:layout_marginTop="10dp"
                                     android:textColor="@color/black" />
                             </LinearLayout>
                         </LinearLayout>

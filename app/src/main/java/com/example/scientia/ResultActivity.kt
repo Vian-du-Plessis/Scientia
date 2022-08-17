@@ -2,6 +2,7 @@ package com.example.scientia
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -13,6 +14,8 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginTop
+import androidx.core.view.setMargins
 import com.example.scientia.databinding.ActivityResultBinding
 import com.example.scientia.models.Constants
 import com.example.scientia.models.Constants.getChemQuestions
@@ -44,6 +47,10 @@ class ResultActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
+        // Shared Preferences
+        val sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
         // Get Questions Count and Score
         var questionsCount = intent.getIntExtra("questionsCount", 0)
         var score = intent.getIntExtra("score", 0)
@@ -53,6 +60,7 @@ class ResultActivity : AppCompatActivity() {
 
         // Category
         val category = intent.getStringExtra("category")
+        binding.tvTitle.text = category
 
         // Get Questions of Selected Category
         var questions: ArrayList<Questions> = getChemQuestions()
@@ -61,38 +69,56 @@ class ResultActivity : AppCompatActivity() {
             "Math" -> {
                 questions = getMathQuestions()
             }
-            "Chem" -> {
+            "Chemistry" -> {
                 questions = getChemQuestions()
             }
-            "Physics" -> {
+            "Phys" -> {
                 questions = Constants.getPhysQuestions()
             }
         }
 
-        // Loop Through all Questions and display them
-        for(i in 0 until questions.count()){
-            // Container of Questions and Answers
-            val layout = LinearLayout(this)
+        var highScore = intent.getBooleanExtra("highScore", false)
+
+        if (highScore) {
+            binding.tvScoreTitle.text = "High Score"
+
+            // Create TextView
+            val tv = TextView(this)
             val params = ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.WRAP_CONTENT
             )
-            // Styling
-            layout.orientation = LinearLayout.VERTICAL
-            layout.setPadding(0, 0, 0, 0)
-            params.setMargins(0,0, 0, 100)
-            layout.layoutParams = params
+            tv.textSize = 20f
+            params.setMargins(0, convertPixels(40), 0, 0)
+            tv.gravity = Gravity.CENTER
+            tv.setTextColor(resources.getColor(R.color.white))
+            tv.text = "Well done!!! You have beaten your High Score. Try playing some of our other categories to increase your knowledge on various subjects"
 
-            // Questions TextView
-            val textQ = TextView(this)
-            textQ.text = "Q. " + questions[i].question
+            binding.llQuestionsContainer.addView(tv)
+        } else {
+            // Loop Through all Questions and display them
+            for(i in 0 until questions.count()){
+                // Container of Questions and Answers
+                val layout = LinearLayout(this)
+                val params = ActionBar.LayoutParams(
+                    ActionBar.LayoutParams.MATCH_PARENT,
+                    ActionBar.LayoutParams.WRAP_CONTENT
+                )
+                // Styling
+                layout.orientation = LinearLayout.VERTICAL
+                layout.setPadding(0, 0, 0, 0)
+                params.setMargins(0,0, 0, 100)
+                layout.layoutParams = params
 
-            textQ.textSize = 16f
-            textQ.setTextColor(Color.parseColor("#F65A99"))
-            textQ.gravity = Gravity.CENTER
-            layout.addView(textQ)
+                // Questions TextView
+                val textQ = TextView(this)
+                textQ.text = "Q. " + questions[i].question
 
-            for(d in 0 until questions[i].answers.count()) {
+                textQ.textSize = 16f
+                textQ.setTextColor(Color.parseColor("#F65A99"))
+                textQ.gravity = Gravity.CENTER
+                layout.addView(textQ)
+
                 // Answers TextView
                 val textA = TextView(this)
                 textA.textSize = 16f
@@ -100,23 +126,16 @@ class ResultActivity : AppCompatActivity() {
                 textA.gravity = Gravity.CENTER
 
                 // Add A. only to the first answer
-                if (d == 0 && questions[i].answers.count() > 1) {
-                    textA.text = "A. " + questions[i].answers[d] + "/"
-                } else if (d == 0) {
-                    textA.text = "A. " + questions[i].answers[d]
-                } else if (d !== questions[i].answers.count() - 1) {
-                    textA.text = questions[i].answers[d] + "/"
-                } else {
-                    textA.text = questions[i].answers[d]
-                }
+                textA.text = "A. " + questions[i].answers[0]
 
                 // Add Answer TextView to layout as child
                 layout.addView(textA)
-            }
 
-            // Add Layout with questions and answers to main Container
-            binding.llQuestionsContainer.addView(layout)
+                // Add Layout with questions and answers to main Container
+                binding.llQuestionsContainer.addView(layout)
+            }
         }
+
 
         // Go back to Category Activity
         binding.ivBackbtn.setOnClickListener {
@@ -128,10 +147,19 @@ class ResultActivity : AppCompatActivity() {
         // Play Category Again
         binding.acbBtnAgain.setOnClickListener {
             val intent = Intent(this, QuestionOneActivity::class.java)
+
+            // Pass Category
+            intent.putExtra("category", category)
             startActivity(intent)
             finish()
         }
+    }
 
+    // Convert Pixels to DP
+    fun convertPixels(dp: Int): Int {
+        val scale = resources.displayMetrics.density
+        val dpasPixels = (dp * scale + 0.5f).toInt()
 
+        return dpasPixels
     }
 }

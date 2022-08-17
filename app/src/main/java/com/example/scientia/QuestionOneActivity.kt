@@ -1,5 +1,6 @@
 package com.example.scientia
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.cardview.widget.CardView
 import androidx.core.view.setPadding
 import com.example.scientia.databinding.ActivityQuestionOneBinding
+import com.example.scientia.models.Constants
 import com.example.scientia.models.Constants.getChemQuestions
 import com.example.scientia.models.Constants.getMathQuestions
 import com.example.scientia.models.Constants.getPhysQuestions
@@ -50,8 +52,22 @@ class QuestionOneActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
+        // Shared Preferences
+        val sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
         // Question Number
         val questionNumber = intent.getIntExtra("questionNumber", 0)
+
+        // Get Category Scores
+        val mathScore = sharedPref.getInt(Constants.MATH_SCORE, 0)
+        val chemScore = sharedPref.getInt(Constants.CHEM_SCORE, 0)
+        val physScore = sharedPref.getInt(Constants.PHYS_SCORE, 0)
+
+        // Get Completion Rate
+        val mathComplete = sharedPref.getInt(Constants.MATH_COMPLETED, 0)
+        val chemComplete = sharedPref.getInt(Constants.CHEM_COMPLETED, 0)
+        val physComplete = sharedPref.getInt(Constants.PHYS_COMPLETED, 0)
 
         // Score
         val score = intent.getIntExtra("score", 0)
@@ -65,15 +81,52 @@ class QuestionOneActivity : AppCompatActivity() {
         // Get Questions of Selected Category
         var questions: ArrayList<Questions> = getChemQuestions()
 
+        // Get Questions from Categories
         when (category) {
             "Math" -> {
                 questions = getMathQuestions()
+                if (score > mathScore) {
+                    editor.apply {
+                        putInt(Constants.MATH_SCORE, score)
+                        apply()
+                    }
+                }
+                if (questionNumber > mathComplete) {
+                    editor.apply {
+                        putInt(Constants.MATH_COMPLETED, questionNumber)
+                        apply()
+                    }
+                }
             }
-            "Chem" -> {
+            "Chemistry" -> {
                 questions = getChemQuestions()
+                if (score > chemScore) {
+                    editor.apply {
+                        putInt(Constants.CHEM_SCORE, score)
+                        apply()
+                    }
+                }
+                if (questionNumber > chemComplete) {
+                    editor.apply {
+                        putInt(Constants.CHEM_COMPLETED, questionNumber)
+                        apply()
+                    }
+                }
             }
             "Physics" -> {
                 questions = getPhysQuestions()
+                if (score > physScore) {
+                    editor.apply {
+                        putInt(Constants.PHYS_SCORE, score)
+                        apply()
+                    }
+                }
+                if (questionNumber > physComplete) {
+                    editor.apply {
+                        putInt(Constants.PHYS_COMPLETED, questionNumber)
+                        apply()
+                    }
+                }
             }
         }
 
@@ -98,6 +151,27 @@ class QuestionOneActivity : AppCompatActivity() {
         // Radio Group
         val rg = RadioGroup(this)
 
+        // Create AppCompatButton
+        val apBtn = AppCompatButton(this)
+        val apBtnParams = ActionBar.LayoutParams(
+            ActionBar.LayoutParams.MATCH_PARENT,
+            ActionBar.LayoutParams.WRAP_CONTENT
+        )
+        apBtnParams.setMargins(convertPixels(40), convertPixels(50), convertPixels(40), 0)
+        apBtn.setPadding(10, 10, 10, 10)
+        apBtn.background = resources.getDrawable(R.drawable.my_button)
+        apBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.pink))
+        apBtn.isAllCaps = false
+        apBtn.text = "Next"
+        apBtn.setTextColor(resources.getColor(R.color.white))
+        apBtn.layoutParams = apBtnParams
+
+        // TextField
+        val tfTil = TextInputLayout(this)
+
+        // Edit Text
+        val et = EditText(this)
+
         // Check Question Answer Method
         if (currentQuestion.type == "Multiple") {
             // Render Question type
@@ -107,7 +181,6 @@ class QuestionOneActivity : AppCompatActivity() {
                 ActionBar.LayoutParams.WRAP_CONTENT
             )
             card.radius = 20f
-            params.setMargins(0, 50, 0, 0)
             card.layoutParams = params
 
             // Radio Group
@@ -115,35 +188,40 @@ class QuestionOneActivity : AppCompatActivity() {
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.WRAP_CONTENT
             )
-            rg.setPadding(20, 20, 20, 20)
+            rg.setPadding(convertPixels(20))
             rg.layoutParams = rgParams
 
             // Add Card and RadioGroup to View
             card.addView(rg)
             binding.llAnswersContainer.addView(card)
 
-            for(i in 0 until currentQuestion.options!!.count()) {
+            // Multiple Choice Options
+            val options = currentQuestion.options!!.shuffled()
+
+            for(i in 0 until options.count()) {
                 // RadioButton
                 val radiobtn = AppCompatRadioButton(this)
                 val rbParams = ActionBar.LayoutParams(
                     ActionBar.LayoutParams.MATCH_PARENT,
                     ActionBar.LayoutParams.WRAP_CONTENT
                 )
-                radiobtn.text = currentQuestion.options!![i]
+                radiobtn.text = options[i]
                 radiobtn.setTextColor(resources.getColor(R.color.black))
                 radiobtn.textSize = 21f
-                radiobtn.layoutParams = rgParams
+                radiobtn.layoutParams = rbParams
+                rbParams.setMargins(0, convertPixels(5), 0, convertPixels(5))
 
                 // Set Tint Color to Radio Button
                 val textColor = resources.getColor(R.color.pink)
-                radiobtn.setButtonTintList(ColorStateList.valueOf(textColor));
+                radiobtn.buttonTintList = ColorStateList.valueOf(textColor);
 
                 // Ad RadioButtons to RadioGroup
                 rg.addView(radiobtn)
             }
+
+            binding.llAnswersContainer.addView(apBtn)
         } else if (currentQuestion.type == "Input") {
             // Create TextField TextInputLayout
-            val tfTil = TextInputLayout(this)
             val tfTilParams = ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.WRAP_CONTENT
@@ -153,38 +231,24 @@ class QuestionOneActivity : AppCompatActivity() {
             tfTil.boxStrokeWidthFocused = 0
             tfTil.counterTextColor = ColorStateList.valueOf(resources.getColor(R.color.white))
             tfTil.isHintEnabled = false
-            tfTilParams.setMargins(0, 20, 0, 0)
+            tfTilParams.setMargins(0, convertPixels(20), 0, 0)
 
             // Create EditText
-            val et = EditText(this)
             val etParams = ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.WRAP_CONTENT
             )
             et.background = resources.getDrawable(R.drawable.custom_input)
             et.hint = "Enter your answer"
-            et.setPadding(15, 15, 15 ,15)
+            et.setPadding(convertPixels(15))
             et.setTextColor(resources.getColor(R.color.white))
             et.setHintTextColor(resources.getColor(R.color.gray))
             et.layoutParams = etParams
 
             binding.llAnswersContainer.addView(et)
 
-            // Create AppCompatButton
-            val apBtn = AppCompatButton(this)
-            val apBtnParams = ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                ActionBar.LayoutParams.WRAP_CONTENT
-            )
-            apBtnParams.setMargins(40, 50, 40, 0)
-            apBtn.setPadding(10)
-            apBtn.background = resources.getDrawable(R.drawable.my_button)
-            apBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.pink))
-            apBtn.isAllCaps = false
-            apBtn.text = "Next"
-            apBtn.setTextColor(resources.getColor(R.color.white))
+            binding.llAnswersContainer.addView(apBtn)
         }
-
 
         // Navigate to Category View
         binding.ivBackbtn.setOnClickListener {
@@ -194,7 +258,7 @@ class QuestionOneActivity : AppCompatActivity() {
         }
 
         // Go to Next Question or Results View
-        binding.acbBtnNext.setOnClickListener {
+        apBtn.setOnClickListener {
             // User Answer
             var answer: String = ""
 
@@ -208,7 +272,7 @@ class QuestionOneActivity : AppCompatActivity() {
                     answer = findViewById<AppCompatRadioButton>(selectedAnswer).text.toString()
                 }
             } else {
-                answer = binding.tfTilAnswer.editText?.text.toString().trim()
+                answer = et.text.toString().trim()
             }
             Log.i("test", answer)
 
@@ -226,6 +290,39 @@ class QuestionOneActivity : AppCompatActivity() {
                     // Pass Score and QuestionsCount
                     intent.putExtra("score", score)
                     intent.putExtra("questionsCount", questions.count())
+                }
+
+                when (category) {
+                    "Math" -> {
+                        if (score > mathScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.MATH_COMPLETED, questionNumber + 1)
+                            putInt(Constants.MATH_SCORE, score + 1)
+                            apply()
+                        }
+                    }
+                    "Chemistry" -> {
+                        if (score > chemScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.CHEM_COMPLETED, questionNumber + 1)
+                            putInt(Constants.CHEM_SCORE, score + 1)
+                            apply()
+                        }
+                    }
+                    "Phys" -> {
+                        if (score > physScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.PHYS_COMPLETED, questionNumber + 1)
+                            putInt(Constants.PHYS_SCORE, score + 1)
+                            apply()
+                        }
+                    }
                 }
 
                 // Pass Category
@@ -258,5 +355,13 @@ class QuestionOneActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // Convert Pixels to DP
+    fun convertPixels(dp: Int): Int {
+        val scale = resources.displayMetrics.density
+        val dpasPixels = (dp * scale + 0.5f).toInt()
+
+        return dpasPixels
     }
 }

@@ -4,6 +4,14 @@ object Constants {
 
     val USER_NAME: String = "username"
 
+    val MATH_SCORE: String = "mathScore"
+    val CHEM_SCORE: String = "chemScore"
+    val PHYS_SCORE: String = "physScore"
+
+    val MATH_COMPLETED: String = "mathCompleted"
+    val CHEM_COMPLETED: String = "chemCompleted"
+    val PHYS_COMPLETED: String = "physCompleted"
+
     // Return All Questions
     fun getMathQuestions() : ArrayList<Questions> {
         // Creating Data
@@ -12,17 +20,18 @@ object Constants {
         // Question One
         val Q1 = Questions(
             1,
-            "What is the only number that has the same number of letters as it's meaning?",
-            listOf("Four", "4"),
+            "If x is a positive integer in the equation 12x = q, then q must be",
+            listOf("a positive even integer"),
             "Multiple",
-            listOf("Four", "hey", "sexy")
+            listOf("a positive even integer", "a negative even integer", "zero", "a positive odd integer", "a negative odd integer")
         )
 
         val Q2 = Questions(
             2,
-            "What number doesn't have its own Roman numeral?",
-            listOf("Zero", "0"),
-            "Input"
+            "What is the approximate value of the square root of 1596?",
+            listOf("40"),
+            "Multiple",
+            listOf("10", "20", "30", "40", "50")
         )
 
         val Q3 = Questions(
@@ -32,58 +41,59 @@ object Constants {
             "Input"
         )
 
-        val Q4 = Questions(
-            4,
-            "What is the smallest perfect number?",
-            listOf("Six", "6"),
-            "Input"
-        )
-
-        val Q5 = Questions(
-            5,
-            "Is Pi a rational or irrational number?",
-            listOf("Irrational"),
-            "Input"
-        )
-
-        val Q6 = Questions(
-            6,
-            "Which number is considered a 'magic number'?",
-            listOf("Nine", "9"),
-            "Input"
-        )
-
-        val Q7 = Questions(
-            7,
-            "What is the most popular lucky number?",
-            listOf("Seven", "7"),
-            "Input"
-        )
-
-        val Q8 = Questions(
-            8,
-            "What is the most popular two-digit number?",
-            listOf("Thirteen", "13"),
-            "Input"
-        )
-
-        val Q9 = Questions(
-            9,
-            "Where is four considered an unlucky number?",
-            listOf("Asia"),
-            "Input"
-        )
+//        val Q4 = Questions(
+//            4,
+//            "What is the smallest perfect number?",
+//            listOf("Six", "6"),
+//            "Input"
+//        )
+//
+//        val Q5 = Questions(
+//            5,
+//            "Is Pi a rational or irrational number?",
+//            listOf("Irrational"),
+//            "Multiple",
+//            listOf("Irrational", "Rational")
+//        )
+//
+//        val Q6 = Questions(
+//            6,
+//            "Which number is considered a 'magic number'?",
+//            listOf("Nine", "9"),
+//            "Input"
+//        )
+//
+//        val Q7 = Questions(
+//            7,
+//            "What is the most popular lucky number?",
+//            listOf("Seven", "7"),
+//            "Input"
+//        )
+//
+//        val Q8 = Questions(
+//            8,
+//            "What is the most popular two-digit number?",
+//            listOf("Thirteen", "13"),
+//            "Input"
+//        )
+//
+//        val Q9 = Questions(
+//            9,
+//            "Where is four considered an unlucky number?",
+//            listOf("Asia"),
+//            "Input"
+//        )
 
         // Add Questions to the array
         allQuestions.add(Q1)
         allQuestions.add(Q2)
         allQuestions.add(Q3)
-        allQuestions.add(Q4)
-        allQuestions.add(Q5)
-        allQuestions.add(Q6)
-        allQuestions.add(Q7)
-        allQuestions.add(Q8)
-        allQuestions.add(Q9)
+//        allQuestions.add(Q4)
+//        allQuestions.add(Q5)
+//        allQuestions.add(Q6)
+//        allQuestions.add(Q7)
+//        allQuestions.add(Q8)
+//        allQuestions.add(Q9)
 
         // Return Data
         return allQuestions
@@ -98,14 +108,16 @@ object Constants {
             1,
             "Situated at the beginning of the table, which is the lightest element on the periodic table?",
             listOf("Hydrogen"),
-            "Input"
+            "Multiple",
+            listOf("Hydrogen", "Beryllium", "Boron", "Sodium")
         )
 
         val Q2 = Questions(
             2,
             "What is the atomic number of Nitrogen?",
             listOf("Seven", "7"),
-            "Input"
+            "Multiple",
+            listOf("7", "9", "20", "21")
         )
 
         val Q3 = Questions(
@@ -133,7 +145,8 @@ object Constants {
             6,
             "Which element is found abundantly in milk?",
             listOf("Calcium"),
-            "Input"
+            "Multiple",
+            listOf("Calcium", "Copper", "Hydrogen", "Helium")
         )
 
         // Add Questions to the array
