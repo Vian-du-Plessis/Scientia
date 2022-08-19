@@ -15,7 +15,7 @@
 <p align="center">
 
   <a href="https://github.com/Vian-du-Plessis/Scientia">
-    <img src="https://drive.google.com/file/d/1q87_J_s8--JT6-lilbRbQiAE1sSPoraL/view" alt="Logo" width="140" height="140">
+    <img src="https://drive.google.com/file/d/1q87_J_s8--JT6-lilbRbQiAE1sSPoraL/view?usp=sharing" alt="Logo" width="140" height="140">
   </a>
   
   <h3 align="center">OpenSpace</h3>
