@@ -8,14 +8,14 @@
 
 
 <!-- HEADER SECTION -->
-<h5 align="center" style="padding:0;margin:0;">Mike Maynard</h5>
-<h5 align="center" style="padding:0;margin:0;">110185</h5>
-<h6 align="center">DV200 - Term 1 | 2022</h6>
+<h5 align="center" style="padding:0;margin:0;">Vian du Plessis</h5>
+<h5 align="center" style="padding:0;margin:0;">21100483</h5>
+<h6 align="center">DV203 - Term 3 | 2022</h6>
 </br>
 <p align="center">
 
-  <a href="https://github.com/MikeMaynard14/termoneexample">
-    <img src="src/assets/mascot.svg" alt="Logo" width="140" height="140">
+  <a href="https://github.com/Vian-du-Plessis/Scientia">
+    <img src="https://drive.google.com/file/d/1q87_J_s8--JT6-lilbRbQiAE1sSPoraL/view" alt="Logo" width="140" height="140">
   </a>
   
   <h3 align="center">OpenSpace</h3>
