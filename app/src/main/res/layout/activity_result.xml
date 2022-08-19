@@ -23,6 +23,7 @@
             android:src="@drawable/back"
             android:layout_weight="1"/>
 
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
@@ -30,6 +31,8 @@
             android:text="Title of Category"
             android:textColor="@color/white"
             android:textSize="28dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_weight="1"/>
 
         <Space

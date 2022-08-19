@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
@@ -46,11 +48,11 @@ class QuestionOneActivity : AppCompatActivity() {
         binding = ActivityQuestionOneBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialise ads
-        MobileAds.initialize(this){}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+//        // Initialise ads
+//        MobileAds.initialize(this){}
+//        mAdView = findViewById(R.id.adView)
+//        val adRequest = AdRequest.Builder().build()
+//        mAdView.loadAd(adRequest)
 
         // Shared Preferences
         val sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE)
@@ -192,8 +194,8 @@ class QuestionOneActivity : AppCompatActivity() {
             rg.layoutParams = rgParams
 
             // Add Card and RadioGroup to View
-            card.addView(rg)
-            binding.llAnswersContainer.addView(card)
+//            card.addView(rg)
+            binding.llAnswersContainer.addView(rg)
 
             // Multiple Choice Options
             val options = currentQuestion.options!!.shuffled()
@@ -206,7 +208,7 @@ class QuestionOneActivity : AppCompatActivity() {
                     ActionBar.LayoutParams.WRAP_CONTENT
                 )
                 radiobtn.text = options[i]
-                radiobtn.setTextColor(resources.getColor(R.color.black))
+                radiobtn.setTextColor(resources.getColor(R.color.white))
                 radiobtn.textSize = 21f
                 radiobtn.layoutParams = rbParams
                 rbParams.setMargins(0, convertPixels(5), 0, convertPixels(5))
@@ -219,7 +221,7 @@ class QuestionOneActivity : AppCompatActivity() {
                 rg.addView(radiobtn)
             }
 
-            binding.llAnswersContainer.addView(apBtn)
+//            binding.llAnswersContainer.addView(apBtn)
         } else if (currentQuestion.type == "Input") {
             // Create TextField TextInputLayout
             val tfTilParams = ActionBar.LayoutParams(
@@ -243,6 +245,7 @@ class QuestionOneActivity : AppCompatActivity() {
             et.setPadding(convertPixels(15))
             et.setTextColor(resources.getColor(R.color.white))
             et.setHintTextColor(resources.getColor(R.color.gray))
+            et.isSingleLine = true
             et.layoutParams = etParams
 
             binding.llAnswersContainer.addView(et)
@@ -257,24 +260,186 @@ class QuestionOneActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Go to next questions when user selects a answer
+        rg.setOnCheckedChangeListener { radioGroup, i ->
+            // User Answer
+            var selectedAnswer = rg.checkedRadioButtonId
+            var answer = findViewById<AppCompatRadioButton>(selectedAnswer).text.toString()
+
+            // If this is the last question
+            if(questionNumber === questions.count() - 1){
+                // Intent for Next Activity
+                val intent = Intent(this, ResultActivity::class.java)
+
+                // Check if answer is correct
+                if (currentQuestion.answers.toString().lowercase().contains(answer.lowercase())) {
+                    // Pass Score and QuestionsCount
+                    intent.putExtra("score", score + 1)
+                    intent.putExtra("questionsCount", questions.count())
+                } else {
+                    // Pass Score and QuestionsCount
+                    intent.putExtra("score", score)
+                    intent.putExtra("questionsCount", questions.count())
+                }
+
+                when (category) {
+                    "Math" -> {
+                        if (score > mathScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.MATH_COMPLETED, questionNumber + 1)
+                            putInt(Constants.MATH_SCORE, score + 1)
+                            apply()
+                        }
+                    }
+                    "Chemistry" -> {
+                        if (score > chemScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.CHEM_COMPLETED, questionNumber + 1)
+                            putInt(Constants.CHEM_SCORE, score + 1)
+                            apply()
+                        }
+                    }
+                    "Phys" -> {
+                        if (score > physScore) {
+                            intent.putExtra("highScore", true)
+                        }
+                        editor.apply {
+                            putInt(Constants.PHYS_COMPLETED, questionNumber + 1)
+                            putInt(Constants.PHYS_SCORE, score + 1)
+                            apply()
+                        }
+                    }
+                }
+
+                // Pass Category
+                intent.putExtra("category", category)
+
+                // Start Activity
+                startActivity(intent)
+                finish()
+            } else {
+                // If answer is Empty
+                if (TextUtils.isEmpty(answer)) {
+                    // Show toast with a message
+                    val toast = Toast.makeText(this, "Please enter a answer" , Toast.LENGTH_LONG)
+                    toast.show()
+                } else {
+                    // Check if answer is correct
+                    if (currentQuestion.answers.toString().lowercase().contains(answer.lowercase())) {
+                        intent.putExtra("score", score + 1)
+                        intent.putExtra("questionsCount", questions.count())
+                    }
+
+                    // Increment Question Number, and pass the value to next activity
+                    intent.putExtra("questionNumber", questionNumber + 1)
+
+                    // Removes Animation when Starting Activity
+                    finish()
+                    overridePendingTransition(0, 0)
+                    startActivity(intent)
+                    overridePendingTransition(0, 0)
+                }
+            }
+        }
+
+        et.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                //Perform Code
+                var answer = et.text.toString().trim()
+
+                // If this is the last question
+                if(questionNumber === questions.count() - 1){
+                    // Intent for Next Activity
+                    val intent = Intent(this, ResultActivity::class.java)
+
+                    // Check if answer is correct
+                    if (currentQuestion.answers.toString().lowercase().contains(answer.lowercase())) {
+                        // Pass Score and QuestionsCount
+                        intent.putExtra("score", score + 1)
+                        intent.putExtra("questionsCount", questions.count())
+                    } else {
+                        // Pass Score and QuestionsCount
+                        intent.putExtra("score", score)
+                        intent.putExtra("questionsCount", questions.count())
+                    }
+
+                    when (category) {
+                        "Math" -> {
+                            if (score > mathScore) {
+                                intent.putExtra("highScore", true)
+                            }
+                            editor.apply {
+                                putInt(Constants.MATH_COMPLETED, questionNumber + 1)
+                                putInt(Constants.MATH_SCORE, score + 1)
+                                apply()
+                            }
+                        }
+                        "Chemistry" -> {
+                            if (score > chemScore) {
+                                intent.putExtra("highScore", true)
+                            }
+                            editor.apply {
+                                putInt(Constants.CHEM_COMPLETED, questionNumber + 1)
+                                putInt(Constants.CHEM_SCORE, score + 1)
+                                apply()
+                            }
+                        }
+                        "Phys" -> {
+                            if (score > physScore) {
+                                intent.putExtra("highScore", true)
+                            }
+                            editor.apply {
+                                putInt(Constants.PHYS_COMPLETED, questionNumber + 1)
+                                putInt(Constants.PHYS_SCORE, score + 1)
+                                apply()
+                            }
+                        }
+                    }
+
+                    // Pass Category
+                    intent.putExtra("category", category)
+
+                    // Start Activity
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // If answer is Empty
+                    if (TextUtils.isEmpty(answer)) {
+                        // Show toast with a message
+                        val toast = Toast.makeText(this, "Please enter a answer", Toast.LENGTH_LONG)
+                        toast.show()
+                    } else {
+                        // Check if answer is correct
+                        if (currentQuestion.answers.toString().lowercase()
+                                .contains(answer.lowercase())
+                        ) {
+                            intent.putExtra("score", score + 1)
+                            intent.putExtra("questionsCount", questions.count())
+                        }
+
+                        // Increment Question Number, and pass the value to next activity
+                        intent.putExtra("questionNumber", questionNumber + 1)
+
+                        // Removes Animation when Starting Activity
+                        finish()
+                        overridePendingTransition(0, 0)
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
+                    }
+                }
+                return@OnKeyListener true
+            }
+            false
+        })
+
         // Go to Next Question or Results View
         apBtn.setOnClickListener {
             // User Answer
-            var answer: String = ""
-
-            if (currentQuestion.type == "Multiple") {
-                var selectedAnswer = rg.checkedRadioButtonId
-
-                if (selectedAnswer == -1) {
-                    val toast = Toast.makeText(this, "Please select your answer", LENGTH_SHORT)
-                    toast.show()
-                } else {
-                    answer = findViewById<AppCompatRadioButton>(selectedAnswer).text.toString()
-                }
-            } else {
-                answer = et.text.toString().trim()
-            }
-            Log.i("test", answer)
+            var answer = et.text.toString().trim()
 
             // If this is the last question
             if(questionNumber === questions.count() - 1){
@@ -356,6 +521,7 @@ class QuestionOneActivity : AppCompatActivity() {
             }
         }
     }
+
 
     // Convert Pixels to DP
     fun convertPixels(dp: Int): Int {

@@ -30,6 +30,7 @@
             android:text="Title of Category"
             android:textColor="@color/white"
             android:textSize="28dp"
+            android:gravity="center"
             android:layout_weight="1"/>
 
         <Space
@@ -58,7 +59,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/adView"
         android:layout_below="@id/pb_line">
 
         <LinearLayout
@@ -148,7 +148,7 @@
                     android:id="@+id/tv_question_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hey this will be a cool description of what the question will be so please dont hate me because I will spring van n brug af?"
+                    android:text="Hey this will be a cool description of what the question will be so please don't hate me because I will spring van n brug af?"
                     android:textSize="20sp"
                     android:textColor="@color/white"
                     android:gravity="center"
@@ -196,12 +196,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/adView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        app:adSize="BANNER"-->
+<!--        app:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+<!--    </com.google.android.gms.ads.AdView>-->
 </RelativeLayout>
