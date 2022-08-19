@@ -1,10 +1,10 @@
 <!-- Repository Information & Links-->
 <br />
 
-![GitHub repo size](https://img.shields.io/github/repo-size/MikeMaynard14/termoneexample)
-![GitHub watchers](https://img.shields.io/github/watchers/MikeMaynard14/termoneexample)
-![GitHub language count](https://img.shields.io/github/languages/count/MikeMaynard14/termoneexample)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MikeMaynard14/termoneexample)
+![GitHub repo size](https://img.shields.io/github/repo-size/Vian-du-Plessis/Scientia)
+![GitHub watchers](https://img.shields.io/github/watchers/Vian-du-Plessis/Scientia)
+![GitHub language count](https://img.shields.io/github/languages/count/Vian-du-Plessis/Scientia)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Vian-du-Plessis/Scientia)
 
 
 <!-- HEADER SECTION -->
@@ -15,22 +15,22 @@
 <p align="center">
 
   <a href="https://github.com/Vian-du-Plessis/Scientia">
-    <img src="https://drive.google.com/file/d/1q87_J_s8--JT6-lilbRbQiAE1sSPoraL/view?usp=sharing" alt="Logo" width="140" height="140">
+    <img src="https://drive.google.com/uc?export=view&id=1q87_J_s8--JT6-lilbRbQiAE1sSPoraL" alt="Logo">
   </a>
   
-  <h3 align="center">OpenSpace</h3>
+  <h3 align="center">Scientia</h3>
 
   <p align="center">
-    A react project using the Space X Api to demonstrate data visualization using charts js  <br>
-    <i>This However is a template file for DV200 Students!</i> 
+    This is a Android Quizz App built with Kotlin and in Android Studio<br>
+    <i>This document will showcase my development process!</i> 
     
    <br />
    <br />
    <a href="path/to/demonstration/video">View Demo</a>
     ·
-    <a href="https://github.com/MikeMaynard14/termoneexample/issues">Report Bug</a>
+    <a href="https://github.com/Vian-du-Plessis/Scientia/issues">Report Bug</a>
     ·
-    <a href="https://github.com/MikeMaynard14/termoneexample/issues">Request Feature</a>
+    <a href="https://github.com/Vian-du-Plessis/Scientia/issues">Request Feature</a>
 </p>
 <!-- TABLE OF CONTENTS -->
 
