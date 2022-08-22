@@ -54,11 +54,6 @@
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
-<!--PROJECT DESCRIPTION-->
-## About the Project
-<!-- header image of project -->
-![image1][image1]
-
 ### Project Description
 
 With this Quiz App you can play through multiple categories of Science such as Mathematics, Chemistry, Physics (and much more to come) to increase your knowledge on various subjects of science.
