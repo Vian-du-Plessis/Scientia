@@ -50,7 +50,6 @@
 * [Final Outcome](#final-outcome)
     * [Mockups](#mockups)
     * [Video Demonstration](#video-demonstration)
-* [Conclusion](#conclusion)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
@@ -200,5 +199,10 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 <!-- LICENSE -->
 
-
-
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+<!-- all resources that you used and Acknowledgements here -->
+* [Kotlin](https://kotlinlang.org/docs/ranges.html#range)
+* [Stack Overflow](https://stackoverflow.com/)
+* [Baeldung](https://www.baeldung.com/kotlin/data-class-optional-fields)
+* [GeeksForGeeks](https://www.geeksforgeeks.org/)
